@@ -3,7 +3,6 @@ import random
 
 
 def limpar_tela():
-    # Limpa o terminal de acordo com o sistema operacional
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -96,34 +95,53 @@ def exibir_forca(tentativas):
 
 
 def jogar():
-    palavras = [
-        'PYTHON',
-        'ALGORITMO',
-        'COMPUTADOR',
-        'TECLADO',
-        'PROGRAMACAO',
-        'INTERNET',
-        'DESENVOLVEDOR',
-        'SISTEMA',
-        'VARIAVEL',
-        'FUNCAO',
-        'ABACAXI',
-        'ELEFANTE',
-        'ASTRONAUTA',
-        'MONTANHA',
-        'OCEANO',
+    personagens = [
+        'YOICHI ISAGI',
+        'MEGURU BACHIRA',
+        'RENSUKE KUNIGAMI',
+        'HYOMA CHIGIRI',
+        'SHOEI BAROU',
+        'SEISHIRO NAGI',
+        'REO MIKAGE',
+        'RIN ITOSHI',
+        'SAE ITOSHI',
+        'RYUSEI SHIDOU',
+        'TABITO KARASU',
+        'EITA OTOYA',
+        'KENYU YUKIMIYA',
+        'IKKI NIKO',
+        'GIN GAGAMARU',
+        'JINGO RAICHI',
+        'ZANTETSU TSURUGI',
+        'JYUBEI ARYU',
+        'AOSHI TOKIMITSU',
+        'OLIVER AIKU',
+        'MICHAEL KAISER',
+        'ALEXIS NESS',
+        'JINPACHI EGO',
+        'ANRI TEIERI',
+        'NOEL NOA',
+        'JULIAN LOKI',
+        'LEONARDO LUNA',
+        'CHRIS PRINCE',
+        'MARC SNUFFY',
+        'LAVINHO',
     ]
 
-    palavra_secreta = random.choice(palavras)
-    letras_descobertas = ['_' for _ in palavra_secreta]
+    personagem_secreto = random.choice(personagens)
+
+    # Preenche com '_' apenas onde há letras; mantém espaços e hífens visíveis
+    letras_descobertas = [
+        letra if not letra.isalpha() else '_' for letra in personagem_secreto
+    ]
     letras_erradas = []
     tentativas = 6
 
     while tentativas > 0 and '_' in letras_descobertas:
         limpar_tela()
-        print('=== JOGO DA FORCA ===')
+        print('⚽ === JOGO DA FORCA: BLUE LOCK === ⚽')
         print(exibir_forca(tentativas))
-        print('Palavra: ' + ' '.join(letras_descobertas))
+        print('Personagem: ' + ' '.join(letras_descobertas))
         print(
             f"Letras erradas: {', '.join(letras_erradas) if letras_erradas else 'Nenhuma'}"
         )
@@ -142,24 +160,26 @@ def jogar():
             input('Você já tentou essa letra! Pressione Enter...')
             continue
 
-        # Verifica se a letra está na palavra
-        if palpite in palavra_secreta:
-            for index, letra in enumerate(palavra_secreta):
+        # Verifica se a letra está no nome do personagem
+        if palpite in personagem_secreto:
+            for index, letra in enumerate(personagem_secreto):
                 if letra == palpite:
                     letras_descobertas[index] = palpite
         else:
             letras_erradas.append(palpite)
             tentativas -= 1
 
-    # Tela final de Vitória ou Derrota
+    # Tela final
     limpar_tela()
-    print('=== FIM DE JOGO ===')
+    print('⚽ === FIM DE JOGO === ⚽')
     print(exibir_forca(tentativas))
 
     if '_' not in letras_descobertas:
-        print(f'🎉 PARABÉNS! Você acertou a palavra: {palavra_secreta}')
+        print(
+            f'🔥 GOLAÇO! Você provou seu ego e acertou: {personagem_secreto}'
+        )
     else:
-        print(f'💀 VOCÊ PERDEU! A palavra era: {palavra_secreta}')
+        print(f'🔒 LOCK OFF! Você perdeu. O personagem era: {personagem_secreto}')
 
 
 if __name__ == '__main__':
@@ -169,6 +189,5 @@ if __name__ == '__main__':
             input('\nDeseja jogar novamente? (S/N): ').strip().upper()
         )
         if jogar_novamente != 'S':
-            print('Obrigado por jogar! Até a próxima.')
+            print('Encerrando o treino no Blue Lock. Até a próxima!')
             break
-
