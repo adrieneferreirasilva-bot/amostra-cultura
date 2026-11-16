@@ -1,2 +1,3 @@
 # amostra-cultura
-michael kaiser
+o script.py é um código de um jogo da forca com nomes de personagens do anime de Blue Lock, Basicamente, o código funciona como um juiz de brincadeira. Primeiro, ele sorteia um personagem secreto de Blue Lock de uma lista e esconde as letras com tracinhos.
+Aí começa o jogo: você tem 6 chances pra chutar uma letra por vez. Se você digitar número, espaço vazio ou repetir uma letra que já falou, o programa te dá um toque e não desconta ponto. Se acertar, ele revela onde a letra tá; se errar, ele vai desenhando o bonequinho na forca. Se você descobrir o nome antes de completar o boneco, faz um golaço. Se errar 6 vezes, toma um 'Lock Off' e perde!
